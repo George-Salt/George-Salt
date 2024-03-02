@@ -1,16 +1,23 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@400;800&display=swap');
 
 
 :root {
   --background-color: #101010;
   --element-color: #1f1f1f;
-  --border-color: #2f2f2f;
   --text-color: #ffffff;
+
+  --border-width: 3px;
+  --border-style: solid;
+  --border-color: #2f2f2f;
 
   --cover-margin: 25px;
   --cover-padding: 25px;
   --cover-width: calc(100vw - var(--cover-margin) * 2 - var(--cover-padding) * 2);
   --cover-height: calc(100vh - var(--cover-margin) * 2 - var(--cover-padding) * 2);
+
+  --social-padding: 25px;
+  --social-border: var(--border-width) var(--border-style) var(--border-color);
+  --social-link-font-size: 35px;
 }
 
 
@@ -25,7 +32,7 @@ html {
 }
 
 body {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Unbounded", sans-serif;
   background: var(--background-color);
   color: var(--text-color);
 }
@@ -46,6 +53,16 @@ body::-webkit-scrollbar-thumb {
 a {
   text-decoration: none;
   color: var(--text-color);
+}
+
+a.link {
+  border-bottom: 1px solid var(--text-color);
+  transition: all 0.3s ease-in-out;
+}
+
+a.link:hover {
+  padding-bottom: 5px;
+  margin-bottom: -5px;
 }
 
 
@@ -89,29 +106,30 @@ main > .cover .profession {
 
 main > .social {
   background: var(--element-color);
-  margin-bottom: -50px;
-  padding: 25px;
+  padding: var(--social-padding);
   padding-bottom: 15px;
-  border: 3px solid var(--border-color);
+  border: var(--social-border);
   border-radius: 50px;
   display: flex;
   align-items: center;
-  transform: translateY(-70px);
-  z-index: 1;
+  justify-content: center;
 }
 
-main > .social a.link {
+main > .social a.icon-link {
   font-size: 35px;
 }
 
-main > .social a.link + a.link {
+main > .social a.icon-link + a.icon-link {
   margin-left: 25px;
 }
 
 
-/* main > .quote {
+main > .quote {
   background: var(--element-color);
-  padding: 25px;
+  margin: 25px;
+  margin-top: 0;
+  padding: 50px;
+  width: calc(35vw - 100px);
   border: 3px solid var(--border-color);
   border-radius: 50px;
   display: flex;
@@ -126,4 +144,54 @@ main > .quote .text {
 
 main > .quote .author {
   margin-right: 25px;
-} */
+}
+
+
+@media screen and (min-width: 1000px) {
+  main > .social {
+    margin-bottom: -50px;
+    transform: translateY(calc(-1 *(var(--social-padding) + var(--border-width) + var(--social-link-font-size) / 2  + var(--cover-margin))));
+    z-index: 1;
+  }
+}
+
+@media screen and (max-width: 1000px) and (min-width: 730px) {
+  main > .social {
+    margin-bottom: 25px;
+    transform: none;
+  }
+
+  main > .quote {
+    width: calc(65vw - 100px);
+  }
+}
+
+@media screen and (max-width: 730px) and (min-width: 405px) {
+  main > .social {
+    margin-bottom: 25px;
+    width: calc(100vw - 100px);
+    transform: none;
+  }
+
+  main > .quote {
+    padding: 25px;
+    width: calc(100vw - 100px);
+  }
+}
+
+@media screen and (max-width: 405px) {
+  main > .cover .profession {
+    display: none;
+  }
+
+  main > .social {
+    margin-bottom: 25px;
+    width: calc(100vw - 100px);
+    transform: none;
+  }
+
+  main > .quote {
+    padding: 25px;
+    width: calc(100vw - 100px);
+  }
+}
